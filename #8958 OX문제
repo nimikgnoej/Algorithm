@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int SCORE(char *str)
+{
+  int chk=0;
+  int score=0;
+
+  if(str[0]=='O')
+  {
+    chk++;
+    score+=chk;
+  }
+  for(int i=1;i<strlen(str)+1;i++)
+  {
+    if(str[i]=='O')
+    {
+      if(str[i-1]=='O')
+      {
+        chk++;
+        score+=chk;
+      }
+      else if(str[i-1]=='X')
+      {
+        chk=1;
+        score+=chk;
+      }
+    }
+    else if(str[i]=='X')
+    {
+      chk=0;
+    }
+  }
+  return score;
+}
+
+int main()
+{
+  int T;
+  char str[80];
+  cin>>T;
+
+  while(T--)
+  {
+    cin>>str;
+    cout<<SCORE(str)<<'\n';
+  }
+}
