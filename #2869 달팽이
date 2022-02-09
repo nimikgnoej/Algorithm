@@ -1,0 +1,45 @@
+//반복문 쓰지않고 해결
+
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main() {
+    int A,B,V;
+    scanf("%d %d %d",&A,&B,&V);
+    int day;
+    
+    if((V-A)%(A-B)==0)
+        day= (V-A)/(A-B);
+    else
+        day= (V-A)/(A-B)+1;
+    
+    printf("%d\n",day+1);
+ 
+}
+
+//반복문 사용하면?
+#include <iostream>
+using namespace std;
+
+int Day(int up,int down,int height)
+{
+  int day=0;
+  int cur=0;
+  while(cur<height)
+  {
+    cur += up;
+    if(cur>=height)
+      return day+1;
+    
+    cur-=down;
+    day++;
+  }
+  return day;
+}
+
+int main()
+{
+  int A,B,V;
+  cin>>A>>B>>V;
+  cout<<Day(A,B,V);
+}
