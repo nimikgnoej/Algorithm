@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int n;
+  double uans,tans;
+  cin>>n;
+  uans = 3.14159265358979*n*n;
+  tans = n*n*2;
+
+  cout << fixed;
+  cout.precision(6);
+  cout<<uans<<'\n';
+  cout<<tans<<'\n';
+}
