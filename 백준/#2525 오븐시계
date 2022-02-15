@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int a,b,c;
+  cin>>a>>b;
+  cin>>c;
+
+  int hour,min;
+  hour=a; min=b+c;
+  while(min>=60)
+  {
+    min -= 60;
+    hour++;
+    if(hour>=24)
+      hour -= 24;
+  }
+
+  cout<<hour<<' '<<min;
+}
+
+너무쉬웠다
