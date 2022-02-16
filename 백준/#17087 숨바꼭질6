@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+int gcd(int a, int b)
+{
+  if(b==0)
+    return a;
+  else
+    return gcd(b,a%b);
+}
+
+int ABS(int a,int b)
+{
+  if(a<b)
+    return b-a;
+  else
+    return a-b;
+}
+
+int main()
+{
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+  int ans;
+  int n,s;
+  cin>>n>>s;
+
+  int Darr[n]; //동생들의 위치이자 거리
+  for(int i=0;i<n;i++)
+    cin>>Darr[i];
+
+  for(int i=0;i<n;i++)
+  {
+    Darr[i] = ABS(Darr[i],s);
+  }
+  
+
+  if(n==1)
+      cout<<Darr[0];
+  else
+  {
+    int res;
+    res=gcd(Darr[0],Darr[1]);
+
+    for(int x=2;x<n;x++)
+    {
+      res = gcd(res,Darr[x]);
+    }
+    cout<<res<<'\n';
+  }
+}
