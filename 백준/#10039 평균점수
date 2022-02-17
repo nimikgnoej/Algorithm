@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int ans=0;
+  int arr[5];
+  for(int i=0;i<5;i++)
+    cin>>arr[i];
+
+  for(int j=0;j<5;j++)
+  {
+    if(arr[j]<=40)
+      arr[j]=40;
+  }
+  ans=(arr[0]+arr[1]+arr[2]+arr[3]+arr[4])/5;
+  cout<<ans<<'\n';
+}
