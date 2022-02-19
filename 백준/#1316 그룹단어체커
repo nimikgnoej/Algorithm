@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  int GroupWord=0; // 그룹단어 개수 담을 변수
+  int N;                    //N개의 단어 입력
+  cin>>N;
+  bool Group[N];            //true이면 그룹단어임
+
+  for(int j=0;j<N;j++)     
+  {
+    int var=10;               //flag 변수
+    bool check[26]={false, }; //true 이면 이미 나온 알파벳, 26인이유는 알파벳 개수마다할라고
+    string str;  cin>>str;
+
+    for(int i=1;i<=str.length();i++) 
+    {
+      if(i==str.length())  //str의 마지막 글자에 접근하기 위해..
+      {
+        if(str.length()==1)
+        {  
+          //Group[j]=true;
+          break;
+        }
+        if(check[str[i-1]-'a']==false) //str[0]이 b이면 check[b-'a']는 check[1]임
+          check[str[i-1]-'a']=true;
+        else if(check[str[i-1]-'a']==true)
+        {
+          Group[j]=false;
+          var=0;
+          break;
+        }
+      }
+      else
+      {
+        if(str[i-1]!=str[i]) //이전 글자랑 같으면 넘어가도되니깐 다를때만 생각
+        {
+          if(check[str[i-1]-'a']==false)
+            check[str[i-1]-'a']=true;
+          else if(check[str[i-1]-'a']==true)
+          {
+            Group[j]=false;
+            var=0;
+            break;
+          }
+        }
+      }
+    }
+    if(var!=0)
+      Group[j]=true;
+  }
+  for(int x=0;x<N;x++)
+  {
+    if(Group[x]==true)
+      GroupWord++;
+  }
+  cout<<GroupWord<<'\n';
+}
