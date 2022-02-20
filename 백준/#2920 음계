@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+  int arr[8];
+  int a_check=0;
+  int d_check=0;
+
+  for(int i=0;i<8;i++)
+    cin>>arr[i];
+
+  for(int j=0;j<8;j++)
+  {
+    if(arr[j]==j+1)
+      a_check++;
+    if(arr[j]==8-j)
+      d_check++;
+  }
+
+  if(a_check==8)
+    cout<<"ascending"<<'\n';
+  else if(d_check==8)
+    cout<<"descending"<<'\n';
+  else
+    cout<<"mixed"<<'\n';
+}
