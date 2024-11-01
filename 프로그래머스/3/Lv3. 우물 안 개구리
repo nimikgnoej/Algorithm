@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static int count = 0;
+
+    public static void main(String[] args) throws Exception{
+        String[] NM = br.readLine().split(" ");
+        int N = Integer.parseInt(NM[0]);
+        int M = Integer.parseInt(NM[1]);
+
+        String[] inputs = br.readLine().split(" ");
+        int[] weights = new int[N+1];
+        for(int i=1;i<=N;i++)
+            weights[i] = Integer.parseInt(inputs[i-1]);
+
+        List<List<Integer>> list = new ArrayList<>();
+        for(int i=0;i<N;i++)
+            list.add(new ArrayList<>());
+            
+        for(int i=0;i<M;i++){
+            String[] relation = br.readLine().split(" ");
+            int from = Integer.parseInt(relation[0]);
+            int to = Integer.parseInt(relation[1]);
+            list.get(from-1).add(to);
+            list.get(to-1).add(from);
+        }
+
+        for(int i=0;i<N;i++){
+            boolean isBest = true;
+            for(int r : list.get(i)){ // i+1 이랑 r 이랑 관계
+                if(weights[i+1] <= weights[r])
+                    isBest = false;
+            }
+            if(isBest)
+                count++;
+        }
+
+        System.out.println(count);
+    }
+}
