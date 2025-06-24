@@ -2,37 +2,28 @@ import java.util.*;
 import java.io.*;
 
 class Solution {
-    public List<Integer> solution(int n, String[] words) {
-        List<Integer> answer = new ArrayList<>();
-        List<String> temp = new ArrayList<>();
-        temp.add(words[0]);
+    public int[] solution(int n, String[] words) {
+        int[] answer = new int[2];
 
-        int headCnt = 1;
-        int count = 1;
-        int lastIndex = words[0].length()-1;
+        List<String> list = new ArrayList<>();
+        list.add(words[0]);
 
-        for(int i=1;i<words.length;i++){
-            if(temp.contains(words[i])){
-                answer.add(i % n + 1);
-                count = i/n + 1;
-                answer.add(count);
+        for(int i=1; i<words.length; i++){
+            if(list.contains(words[i]) || same(list.get(list.size()-1), words[i])){
+                answer[0] = i%n+1;
+                answer[1] = i/n+1;
                 break;
             }
-        
-            if(words[i].charAt(0) != words[i-1].charAt(lastIndex)){
-                // 다르면 i번째 사람 탈락
-                answer.add(i % n + 1);
-                count = i/n + 1;
-                answer.add(count);
-                break;
-            } 
-            lastIndex = words[i].length()-1;
-            temp.add(words[i]);
+            list.add(words[i]);
         }
-        if(answer.size()==0){
-            answer.add(0);
-            answer.add(0);
-        }
+
         return answer;
+    }
+
+    public boolean same(String word1, String word2) {
+        if(word1.charAt(word1.length()-1) == word2.charAt(0)){
+            return false;
+        }
+        return true;
     }
 }
